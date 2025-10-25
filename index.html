@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quant-AI Stock Prediction Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+    <script src="assets/js/data.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+    <header class="hero" id="top">
+        <div class="hero__content">
+            <p class="hero__eyebrow">Quant-AI Research Studio</p>
+            <h1>Stock Price Prediction Model Observatory</h1>
+            <p class="hero__lede">
+                Explore how different machine learning techniques perform when forecasting a technology stock. Toggle
+                models, compare error metrics, and identify the approach that fits your trading strategy.
+            </p>
+            <div class="hero__actions">
+                <a href="#comparison" class="btn btn--primary">Compare models</a>
+                <a href="#profiles" class="btn">Model profiles</a>
+            </div>
+        </div>
+        <dl class="hero__facts">
+            <div>
+                <dt>Dataset</dt>
+                <dd id="dataset-name">Fictional Tech Equity</dd>
+            </div>
+            <div>
+                <dt>Date range</dt>
+                <dd id="dataset-period">Jan – Dec 2023</dd>
+            </div>
+            <div>
+                <dt>Forecast horizon</dt>
+                <dd id="dataset-horizon">30 days ahead</dd>
+            </div>
+        </dl>
+    </header>
+
+    <main>
+        <section id="overview" class="section">
+            <div class="section__header">
+                <h2>Project overview</h2>
+                <p>All models were trained on identical features and evaluated against the same validation window to
+                    enable fair, apples-to-apples comparisons.</p>
+            </div>
+            <div class="overview-grid">
+                <article class="card">
+                    <h3>Feature stack</h3>
+                    <ul id="feature-stack" class="chip-list"></ul>
+                </article>
+                <article class="card">
+                    <h3>Modeling workflow</h3>
+                    <ol id="workflow-steps"></ol>
+                </article>
+                <article class="card card--accent">
+                    <h3>Key takeaways</h3>
+                    <ul id="insight-summary"></ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="comparison" class="section">
+            <div class="section__header">
+                <h2>Interactive forecast comparison</h2>
+                <p>Select one or more models to overlay their predictions on the historical price series.</p>
+            </div>
+            <div class="card">
+                <div class="comparison-layout">
+                    <div class="controls">
+                        <div class="controls__header">
+                            <h3>Model selection</h3>
+                            <p>Choose up to five models to benchmark simultaneously.</p>
+                        </div>
+                        <div id="model-selector" class="model-selector"></div>
+                        <div class="controls__hint">
+                            <p><strong>Tip:</strong> Hover the chart to inspect individual forecast values.</p>
+                        </div>
+                    </div>
+                    <div class="chart-panel">
+                        <canvas id="price-chart" aria-label="Stock price comparison chart" role="img"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metrics" class="section">
+            <div class="section__header">
+                <h2>Error metrics dashboard</h2>
+                <p>Performance scores are calculated on the same hold-out set. Lower MAE, RMSE, and MAPE are better,
+                    while higher R<sup>2</sup> indicates stronger fit.</p>
+            </div>
+            <div class="card">
+                <div class="metrics-layout">
+                    <div class="chart-panel chart-panel--radar">
+                        <canvas id="metric-chart" aria-label="Model metric radar chart" role="img"></canvas>
+                        <div id="metric-placeholder" class="chart-placeholder" hidden>
+                            Select at least one model to visualize normalized metric performance.
+                        </div>
+                    </div>
+                    <div class="metrics-table-wrapper">
+                        <table id="metrics-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="is-sticky">Model</th>
+                                    <th scope="col" data-key="MAE">MAE
+                                        <span aria-hidden="true">↓</span>
+                                    </th>
+                                    <th scope="col" data-key="RMSE">RMSE
+                                        <span aria-hidden="true">↓</span>
+                                    </th>
+                                    <th scope="col" data-key="MAPE">MAPE (%)
+                                        <span aria-hidden="true">↓</span>
+                                    </th>
+                                    <th scope="col" data-key="R2">R²
+                                        <span aria-hidden="true">↑</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <p class="table-footnote">Click any metric header to sort the table.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profiles" class="section">
+            <div class="section__header">
+                <h2>Model profiles</h2>
+                <p>Each model captures different aspects of the price dynamics. Use the summaries below to understand
+                    how they were configured.</p>
+            </div>
+            <div id="model-profiles" class="card-grid"></div>
+        </section>
+
+        <section id="insights" class="section">
+            <div class="section__header">
+                <h2>Analyst commentary</h2>
+                <p>Interpretation of the comparative performance and guidance for deployment.</p>
+            </div>
+            <div class="card">
+                <ul id="insight-list" class="insight-list"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>All figures are illustrative and based on a synthetic dataset. Past performance does not guarantee future
+            results. Built with Chart.js and vanilla JavaScript.</p>
+        <a href="#top" class="to-top">Back to top ↑</a>
+    </footer>
+</body>
+</html>
