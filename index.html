@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quant-AI Stock Prediction Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <h1>Quant-AI Stock Prediction Lab</h1>
+      <p>
+        Explore how different machine learning models tackle the challenge of forecasting
+        stock prices. Toggle model overlays, inspect error metrics, and compare their
+        strengths to design the best ensemble for your trading strategy.
+      </p>
+      <div class="hero__cta">
+        <button class="btn btn--primary" id="toggle-all">Toggle All Models</button>
+        <button class="btn" id="reset-view">Reset View</button>
+      </div>
+    </div>
+    <div class="hero__filters" id="model-filters"></div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Price Trajectories</h2>
+      <p>
+        The chart overlays the actual stock price with predictions from classical and deep learning models.
+        Use the toggles above to focus on specific techniques or compare them side-by-side.
+      </p>
+      <canvas id="price-chart" height="280"></canvas>
+    </section>
+
+    <section class="card card--split">
+      <div>
+        <h2>Error Landscape</h2>
+        <p>
+          Average absolute errors reveal the relative bias of each model over the selected evaluation window.
+        </p>
+        <canvas id="error-chart" height="220"></canvas>
+      </div>
+      <div>
+        <h2>Performance Metrics</h2>
+        <p>
+          Summary statistics calculated from the evaluation window. Hover any metric to learn how it is measured.
+        </p>
+        <table class="metrics-table" id="metrics-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th title="Mean Absolute Error">MAE</th>
+              <th title="Root Mean Squared Error">RMSE</th>
+              <th title="Mean Absolute Percentage Error">MAPE</th>
+              <th title="Directional Accuracy">DA</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Model Playbook</h2>
+      <div class="playbook" id="model-playbook"></div>
+    </section>
+  </main>
+
+  <footer>
+    Crafted with ❤️ for quantitative researchers exploring interpretable ML-driven trading systems.
+  </footer>
+</body>
+</html>
